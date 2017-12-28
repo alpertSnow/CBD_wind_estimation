@@ -21,7 +21,7 @@ root.dir <- '~/OpenFOAM/thubee-2.1.1/run/CBD'
 
 ## get the dir names
 setwd(root.dir)
-dirs <- seq(148, 186, 2)
+dirs <- seq(148, 206, 2)
 wind.degrees <- substr(dirs, 1,3)
 
 ## read sample sets files
