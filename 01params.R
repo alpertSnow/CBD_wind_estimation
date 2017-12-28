@@ -11,7 +11,7 @@ library(MASS)
 library(matlib)
 
 ## settings
-U.ref <- 6.13 # reference wind speed in CFD at H_ref = 30 m
+U.ref <- 9.6648 # reference wind speed in CFD at H_ref = 45 m
 f.Ux.pre <- 'Ux_pre.csv'
 f.Uy.pre <- 'Uy_pre.csv'
 f.Uz.pre <- 'Uz_pre.csv'
