@@ -11,15 +11,15 @@ library(data.table)
 library(dplyr)
 
 ## settings
-root.dir <- 'E:/R/STE_wind_JU2003'
+root.dir <- 'E:/R/CBD_wind_estimation'
 f1.name.head <- 'dpg_pwids'
 f1.name.tail <- '-0318000-0321024.dat'
 f1.n <- 15
 f1.dir <- 'E:/实测数据/JointUrban2003/PWID&Hobo&PNNLmet/DPG_PWIDS/dpg_pwids-1144940441'
 f1.skip <- 61
 f1.vars <- c('Julian.date', 'time', 'speed', 'direction', 'temp', 'RH', 'QC.flag')
-time.start <- as.POSIXct('2003-07-27 01:00:00', tz = 'GMT')
-time.end <- as.POSIXct('2003-07-27 01:30:00', tz = 'GMT')
+time.start <- as.POSIXct('2003-07-27 01:00:00', tz = 'CST6CDT') # warning: time zone
+time.end <- as.POSIXct('2003-07-27 01:30:00', tz = 'CST6CDT')
 
 ## load data to lists of observations
 setwd(f1.dir)
