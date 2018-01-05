@@ -15,7 +15,7 @@ data <- list('n.valid.U', 'Ux.map', 'Uy.map', 'k.map', 'U.mu', 'U.cov.obs.array'
 parameters <- c('wdir', 'wspd', 'i.wdir')
 inits <- NULL
 
-wf.sim <- jags(data, inits, parameters, 'windfinder.bug', n.chains = 3, n.iter = 2000, n.burnin = 1000, n.thin = 1)
+wf.sim <- jags(data, inits, parameters, 'windfinder.bug', n.chains = 3, n.iter = 5000, n.burnin = 1000, n.thin = 1)
 
 wf.coda <- as.mcmc(wf.sim)
 print(wf.sim)

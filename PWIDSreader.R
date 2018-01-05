@@ -18,8 +18,10 @@ f1.n <- 15
 f1.dir <- 'E:/实测数据/JointUrban2003/PWID&Hobo&PNNLmet/DPG_PWIDS/dpg_pwids-1144940441'
 f1.skip <- 61
 f1.vars <- c('Julian.date', 'time', 'speed', 'direction', 'temp', 'RH', 'QC.flag')
-time.start <- as.POSIXct('2003-07-27 01:00:00', tz = 'CST6CDT') # warning: time zone
-time.end <- as.POSIXct('2003-07-27 01:30:00', tz = 'CST6CDT')
+#time.start <- as.POSIXct('2003-07-27 01:00:00', tz = 'CST6CDT') # warning: time zone
+#time.end <- as.POSIXct('2003-07-27 01:30:00', tz = 'CST6CDT')
+time.start <- as.POSIXct('2003-07-27 01:00:00', tz = 'GMT') # warning: time zone
+time.end <- as.POSIXct('2003-07-27 01:30:00', tz = 'GMT')
 
 ## load data to lists of observations
 setwd(f1.dir)
