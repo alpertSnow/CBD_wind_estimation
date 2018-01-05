@@ -26,9 +26,19 @@ mcmc <- data.frame(wf.sim$BUGSoutput$sims.list)
 
 ## plot
 # hists of dir 
-hist( mcmc$wdir, 15, col=rgb(1,0,0,1/4), xlim=c(130,220), freq = FALSE)  # second
+hist( mcmc$wdir, 30, col=rgb(1,0,0,1/4), xlim=c(130,220), freq = FALSE)  # second
 hist( wdir.obs[,14], 20, col=rgb(0,0,1,1/4), xlim=c(130,220), freq = FALSE, add=T)  # first histogram
 
+wdir.obs.downwind <- rnorm(12000, 176, 13.3/2)
+# hist( wdir.obs.downwind, 20, col=rgb(0,1,0,1/4), xlim=c(130,220), freq = FALSE, add=T)
+lines(density(wdir.obs[,14], adjust=2), col="blue", lwd=2) 
+lines(density(wdir.obs.downwind, adjust=2), col="darkgreen", lwd=2)
+lines(density(mcmc$wdir, adjust=6),col="red", lwd=2)
+
 # hists of speed
-hist( mcmc$wspd, 20, col=rgb(1,0,0,1/4), xlim=c(0, 15), freq = FALSE)  # first histogram
-hist( wspd.obs[,14], 20, col=rgb(0,0,1,1/4), xlim=c(0, 15), freq = FALSE, add=T)  # second
+
+hist( wspd.obs[,14], 20, col=rgb(0,0,1,1/4), xlim=c(0, 15), ylim=c(0,0.45), freq = FALSE)  # second
+hist( mcmc$wspd, 20, col=rgb(1,0,0,1/4), xlim=c(0, 15), freq = FALSE,add=T)  # first histogram
+lines(density(wspd.obs[,14], adjust=2), col="blue", lwd=2) 
+lines(density(mcmc$wspd, adjust=6),col="red", lwd=2)
+lines(c(6.925,6.925), c(0,0.45), col='darkgreen',lwd=2)
