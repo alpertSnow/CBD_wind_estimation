@@ -11,7 +11,7 @@ library(ggplot2)
 library(tmvtnorm)
 
 ## settings
-i.sensor <- 6
+i.sensor <- 13
 n.post <- nrow(mcmc)
 ## calculate posterior predicted velocity at wind sensors
 Ux.mean.post <- Ux.map[mcmc$i.wdir,] * mcmc$wspd / U.ref  # posterior predictive Ux
@@ -48,17 +48,25 @@ post.col <- 'red'
 obs.col <- 'blue'
 g1 <- ggplot() + 
         #geom_density2d(data=U.post.i,aes(x, y, colour=..level..)) + 
-        geom_point(data = U.post.i, aes(x, y), col = post.col, shape = 16, alpha = 0.01) +
+        geom_line(aes(x=c(-6,6), y=c(0,0)), col = 'black', size = 1, alpha=0.5)+
+        geom_line(aes(y=c(-6,6), x=c(0,0)), col = 'black', size = 1, alpha=0.5)+
+        geom_point(data = U.post.i, aes(x, y), col = post.col, shape = 19, alpha = 0.005) +
         scale_colour_gradient(low = "green", high = "red") + 
-        geom_point(data = U.obs.i, aes(x, y), col = obs.col, shape = 16, alpha = 0.2) +
-        geom_point(data = U.mean_sd.i, aes(postX.mean, postY.mean), size = 3, col = post.col)+
-        geom_point(data = U.mean_sd.i, aes(obsX.mean, obsY.mean), size = 3, col = obs.col)+
-        geom_errorbar(data = U.mean_sd.i, aes(x = postX.mean, ymin = postY.mean - postY.sd, ymax = postY.mean + postY.sd),col = post.col)+
-        geom_errorbarh(data = U.mean_sd.i, aes(x = postX.mean, y = postY.mean, xmin = postX.mean - postX.sd, xmax = postX.mean + postX.sd),col = post.col)+
-        geom_errorbar(data = U.mean_sd.i, aes(x = obsX.mean, ymin = obsY.mean - obsY.sd, ymax = obsY.mean + obsY.sd),col = obs.col)+
-        geom_errorbarh(data = U.mean_sd.i, aes(x = obsX.mean, y = obsY.mean, xmin = obsX.mean - obsX.sd, xmax = obsX.mean + obsX.sd),col = obs.col)+
-        scale_x_continuous(limits = c(-6,6)) +
-        scale_y_continuous(limits = c(-6,6)) +
+        geom_point(data = U.obs.i, aes(x, y), col = obs.col, shape = 16, alpha = 0.3) +
+        geom_errorbar(data = U.mean_sd.i, aes(x = postX.mean, ymin = postY.mean - postY.sd, ymax = postY.mean + postY.sd),col = post.col,size=1)+
+        geom_errorbarh(data = U.mean_sd.i, aes(x = postX.mean, y = postY.mean, xmin = postX.mean - postX.sd, xmax = postX.mean + postX.sd),col = post.col,size=1)+
+        geom_errorbar(data = U.mean_sd.i, aes(x = obsX.mean, ymin = obsY.mean - obsY.sd, ymax = obsY.mean + obsY.sd),col = obs.col,size=1)+
+        geom_errorbarh(data = U.mean_sd.i, aes(x = obsX.mean, y = obsY.mean, xmin = obsX.mean - obsX.sd, xmax = obsX.mean + obsX.sd),col = obs.col,size=1)+
+        geom_point(data = U.mean_sd.i, aes(postX.mean, postY.mean), shape=21,size = 4,stroke=1.5, col = post.col, fill='white')+
+        geom_point(data = U.mean_sd.i, aes(obsX.mean, obsY.mean), shape=21,size = 4,stroke=1.5, col = obs.col, fill='white')+
+        scale_x_continuous(limits = c(-6,6), expand = c(0,0), breaks = c(-6,-3,0,3,6)) +
+        scale_y_continuous(limits = c(-6,6), expand = c(0,0), breaks = c(-6,-3,0,3,6)) +
         coord_fixed(ratio = 1) +
-        commonTheme 
+        theme_bw()+
+        theme(axis.text.x = element_blank(),
+              axis.text.y = element_blank(),
+              axis.ticks = element_blank(),
+              axis.title = element_blank(),
+              panel.border = element_rect(fill=NA, colour = "white", size=0.5),
+              plot.margin = margin(l=0, b=0,r=0, t=0, unit='cm'))
 plot(g1)
