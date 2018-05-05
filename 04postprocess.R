@@ -29,7 +29,7 @@ mcmc <- data.frame(wf.sim$BUGSoutput$sims.list)
 hist( mcmc$wdir, 30, col=rgb(1,0,0,1/4), xlim=c(140,210), freq = FALSE)  # second
 hist( wdir.obs[,14], 20, col=rgb(0,0,1,1/4), xlim=c(140,210), freq = FALSE, add=T, lty=2)  # first histogram
 
-wdir.obs.downwind <- rnorm(12000, 176, 13.3/2) #GMT
+wdir.obs.downwind <- rnorm(12000, 178, 11.8/2) #GMT
 # hist( wdir.obs.downwind, 20, col=rgb(0,1,0,1/4), xlim=c(130,220), freq = FALSE, add=T)
 lines(density(wdir.obs[,14], adjust=2), col="blue", lwd=2, lty=2) 
  lines(density(wdir.obs.downwind, adjust=2), col="darkgreen", lwd=2,lty=4)
