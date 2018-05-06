@@ -27,9 +27,12 @@ windfinder <- function(){
         Mwdir ~ dcat(p.wdir)
         i.wdir <- wdir.Cat[Mwdir]
         # wind speed
-        #log.rel.wspd ~ dunif(logWspdLower, logWspdUpper)
-        #rel.wspd <- 10^log.rel.wspd
-        rel.wspd ~ dunif(0,10)
+        log.rel.wspd ~ dunif(logWspdLower, logWspdUpper)
+        rel.wspd <- 10^log.rel.wspd
+        # rel.wspd ~ dunif(0,10)
+        
+        # concentration prediction
+        C <- C.pre[i.wdir,] / rel.wspd * 0.5
 }
 wf.path <- file.path(getwd(), 'windfinder.bug')
 write.model(windfinder, wf.path)

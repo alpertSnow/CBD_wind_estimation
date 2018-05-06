@@ -16,5 +16,7 @@ model
     wdir <- wdirs[i.wdir]
     Mwdir ~ dcat(p.wdir)
     i.wdir <- wdir.Cat[Mwdir]
-    rel.wspd ~ dunif(0.00000E+00, 10)
+    log.rel.wspd ~ dunif(logWspdLower, logWspdUpper)
+    rel.wspd <- 10^log.rel.wspd
+    C <- C.pre[i.wdir, ]/rel.wspd * 0.5
 }

@@ -18,6 +18,8 @@ f.Uz.pre <- 'Uz_pre.csv'
 f.k.pre <- 'k_pre.csv'
 f.Ux.obs <- 'Ux_obs_PWIDS.csv'
 f.Uy.obs <- 'Uy_obs_PWIDS.csv'
+f.C.pre <- 'C_pre.csv'
+f.C.obs <- 'C_obs_IOP9R1.csv'
 n.PWIDS <- 15
 i.PWIDS.ignore <- 14 # ignore PWIDS15 for validation
 i.PWIDS.na <- 9 # drop PWIDS09 (no valid data)
@@ -58,3 +60,7 @@ wdir.Cat <- 1:n.wdir
 p.wdir <- rep(1,n.wdir)
 logWspdUpper <- 2
 logWspdLower <- -2
+
+## prepare concentration data
+C.pre <- read.csv(f.C.pre, row.names = 1)
+C.obs <- read.csv(f.C.obs, row.names = 1)
